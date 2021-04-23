@@ -1,0 +1,41 @@
+Name: Basic
+Grabs: http requests, ssl/tls syn 
+Removes: SSDP
+Filter: http.request or tls.handshake.type == 1) and !(udp.port == 1900
+
+Name: Basic+
+Grabs: http requests, ssl/tls syn, tcp syn
+Removes: SSDP
+Filter: (http.request or tls.handshake.type == 1 or tcp.flags == 0x0002) and !(udp.port == 1900)
+
+Name: Basic+ DNS
+Grabs: http request, ssl/tls syn, tcp syn, DNS requests
+Removes: SSDP
+Filter: (http.request or tls.handshake.type == 1 or tcp.flags == 0x0002 or dns) and !(udp.port == 1900)
+
+Name: Basic+ Retrans
+Grabs: http requests, ssl/tls syn, tcp syn, tcp retrans
+Removes: SSDP
+Filter: (http.request or tls.handshake.type == 1 or tcp.flags == 0x0002) and !(udp.port == 1900)
+
+Name: Host Information
+Grabs: dhcp, nbns, username kerberos traffic
+Removes: N/A
+Filter: dhcp or nbns or kerberos.CNameString
+Info: Make CNameString a column or filter kerberos with (or !(kerberos.CNameString contains $))
+
+Name:
+Grabs:
+Removes:
+Filter: 
+
+Name:
+Grabs:
+Removes:
+Filter: 
+
+Name:
+Grabs:
+Removes:
+Filter: 
+
